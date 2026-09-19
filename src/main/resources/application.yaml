@@ -1,3 +1,31 @@
+app:
+  base-url: ${BASE_URL:http://localhost:8080}
+  allowed-origins: ${ALLOWED_ORIGINS:http://localhost:5173}
+  rate-limit:
+    capacity: 100
+    refill-per-minute: 100
+
+
 spring:
+  jpa:
+    hibernate:
+      ddl-auto: update
   application:
     name: Trulink
+  datasource:
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${ISSUER_URI}
+          jws-algorithms: ES256
+supabase:
+  project-url: ${PROJECT_URL}
+  service-role-key: ${SB_SECRET_KEY}
